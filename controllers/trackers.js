@@ -2,9 +2,7 @@ const Tracker = require('../models/tracker');
 
 module.exports = {
     index: async (req, res, next) => {
-
         const users = await Tracker.find({});
-        throw new Error('test;')
         res.status(200).json(users);
     },
 

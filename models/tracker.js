@@ -11,5 +11,5 @@ const UserSchema = new Schema({
     }]
 });
 
-const Tracker = mongoose.model('Tracker', UserSchema);
+const Tracker = mongoose.model('tracker', UserSchema);
 module.exports = Tracker;
