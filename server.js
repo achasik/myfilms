@@ -8,12 +8,16 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
 
 app.use((req, res, next) => {
+    if (req.url === '/favicon.ico') {
+        res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+        res.end();
+    }
     const key = req.query.key;
     if(key === process.env.KEY)
         next();
     else{
         res.status(401);
-        res.send();
+        res.end();
     }        
 });
 
