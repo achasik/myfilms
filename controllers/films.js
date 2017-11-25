@@ -21,12 +21,11 @@ module.exports = {
     post: async (req, res)=>{
         const arr = req.body.ids;
         const ids = arr.map(mongoose.Types.ObjectId);
-        const result = await Film.update(
+        await Film.update(
             {_id: {$in: ids}},
             {$set: {seen: true}},
             {multi: true}
         );
         res.send({ status: 'SUCCESS' });
     }
-
 };
