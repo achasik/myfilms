@@ -12,6 +12,8 @@ app.use((req, res, next) => {
         res.writeHead(200, {'Content-Type': 'image/x-icon'} );
         res.end();
     }
+    // if(req.method != 'GET')
+    //     next();
     const key = req.query.key;
     if(key === process.env.KEY)
         next();
@@ -20,8 +22,8 @@ app.use((req, res, next) => {
         res.end();
     }        
 });
-
 app.use(bodyParser.json());
+
 
 const films = require('./routes/films');
 app.use('/films', films);

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Film = require('../models/film');
 const Torrent = require('../models/torrent');
 
@@ -16,5 +17,16 @@ module.exports = {
         const id = req.params.id;
         const film = await Film.findById(id).populate('torrents');
         res.status(200).json(film);
+    },
+    post: async (req, res)=>{
+        const arr = req.body.ids;
+        const ids = arr.map(mongoose.Types.ObjectId);
+        const result = await Film.update(
+            {_id: {$in: ids}},
+            {$set: {seen: true}},
+            {multi: true}
+        );
+        res.send({ status: 'SUCCESS' });
     }
+
 };
