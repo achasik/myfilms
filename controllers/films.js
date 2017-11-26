@@ -6,8 +6,8 @@ module.exports = {
     index: async(req, res) => {
         const page = req.query.page || 1;
         //const page = parseInt(pageStr);
-        const films = await Film.find({seen: {$ne: true}, torrents: { $gt: [] }}, { __v: 0})
-            .sort({updatedAt:-1})
+        const films = await Film.find({seen: {$ne: true}, torrents: { $gt: [] },updatedAt:{$gt: new Date((new Date())-120*60*60*1000)}}, { __v: 0})
+            .sort({year:-1, updatedAt:-1})
             .skip((page-1)*50)
             .limit(50);
         res.status(200).json(films);
@@ -19,13 +19,13 @@ module.exports = {
         res.status(200).json(film);
     },
     post: async (req, res)=>{
-        const arr = req.body.ids;
+        const arr = req.body;
         const ids = arr.map(mongoose.Types.ObjectId);
-        await Film.update(
+        const result = await Film.update(
             {_id: {$in: ids}},
             {$set: {seen: true}},
             {multi: true}
         );
-        res.send({ status: 'SUCCESS' });
+        res.send({ status: 'SUCCESS', message: result.n });
     }
 };
