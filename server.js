@@ -9,7 +9,7 @@ mongoose.connect(
    process.env.MONGODB_URI,
    { useMongoClient: true }
 );
-
+app.set('view engine', 'pug');
 app.use((req, res, next) => {
    if (req.url === '/favicon.ico') {
       res.writeHead(200, { 'Content-Type': 'image/x-icon' });
