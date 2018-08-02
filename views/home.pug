@@ -5,7 +5,9 @@ html
       ul
         each film in films
           li
-            img(src='https://image.tmdb.org/t/p/w342'+film.poster)
-            div=film.name + ' / '+ film.nameRu +' '+ film.year
-            div=film.description
+            div(width=510)
+              div
+                strong=film.name + ' / '+ film.nameRu +' '+ film.year
+              img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
+              div=film.description
 
