@@ -1,3 +1,7 @@
 html
   body
     h1= title
+    div
+      ul
+        each film in films
+        li=film.name / film.nameRu film.year

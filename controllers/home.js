@@ -11,7 +11,7 @@ module.exports = {
       ).sort({ year: -1, updatedAt: -1 });
       // .skip((page-1)*50)
       // .limit(50);
-      res.render('home', { title: 'Films found ' + films.length });
+      res.render('home', { title: 'Films found ' + films.length, films: films });
    },
    film: async (req, res) => {
       //const t = new Torrent();
