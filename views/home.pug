@@ -4,4 +4,6 @@ html
     div
       ul
         each film in films
-          li=film.name + '/'+ film.nameRu +' '+ film.year
+          li=film.name + ' / '+ film.nameRu +' '+ film.year
+            img(src=film.poster)
+
