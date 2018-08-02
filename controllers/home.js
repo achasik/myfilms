@@ -1,16 +1,13 @@
 const Film = require('../models/film');
 const Torrent = require('../models/torrent');
 
-module.exports = {
+const films = await Film.find(
+   { seen: { $ne: true }, torrents: { $gt: [] }, updatedAt: { $gt: new Date(new Date() - 120 * 60 * 60 * 1000) } },
+   { __v: 0 }
+).sort({ year: -1, updatedAt: -1 });
+
+module.exports = {  
    home: async (req, res) => {
-      // const page = req.query.page || 1;
-      //const page = parseInt(pageStr);
-      const films = await Film.find(
-         { seen: { $ne: true }, torrents: { $gt: [] }, updatedAt: { $gt: new Date(new Date() - 120 * 60 * 60 * 1000) } },
-         { __v: 0 }
-      ).sort({ year: -1, updatedAt: -1 });
-      // .skip((page-1)*50)
-      // .limit(50);
       res.render('home', { title: 'Films found ' + films.length, films: films });
    },
    film: async (req, res) => {
