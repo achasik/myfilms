@@ -1,11 +1,11 @@
 html
   body
-    div
-            div(style= {width:'520px', padding:'20px'})
-              div                
-                
-                  strong=film.name + ' / '+ film.nameRu +' '+ film.year
-                  img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
-              div=film.description
-              each torrent in film.torrents
-                a(href=torrent.magnet)=torrent.title
+    div(style= {width:'520px', padding:'20px'})
+      div                                
+        strong=film.name + ' / '+ film.nameRu +' '+ film.year
+        img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
+      div=film.description
+    ul
+    each torrent in film.torrents
+      li
+        a(href=torrent.magnet)=torrent.title
