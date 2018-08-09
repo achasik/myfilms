@@ -7,7 +7,7 @@ html
           li
             div(style= {width:'520px', padding:'20px'})
               div                
-                a(href='/detail/'+film.id+'?key=0897sa')
+                a(href='/detail/'+film.id+'?key='+process.env.KEY)
                   h2=film.name + ' / '+ film.nameRu +' '+ film.year
                   img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
               div=film.description
