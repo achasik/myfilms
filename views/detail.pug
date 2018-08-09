@@ -1,0 +1,11 @@
+html
+  body
+    div
+            div(style= {width:'520px', padding:'20px'})
+              div                
+                a(href='/detail/'+film.id+'?key=0897sa')
+                  strong=film.name + ' / '+ film.nameRu +' '+ film.year
+                  img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
+              div=film.description
+              each torrent in film.torrents
+                a(href=torrent.magnet)=torrent.title
