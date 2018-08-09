@@ -10,7 +10,7 @@ module.exports = {
       {
         seen: { $ne: true },
         torrents: { $gt: [] },
-        updatedAt: { $gt: new Date(new Date() - 120 * 60 * 60 * 1000) }
+        updatedAt: { $gt: new Date(new Date() - 240 * 60 * 60 * 1000) }
       },
       { __v: 0 }
     )
