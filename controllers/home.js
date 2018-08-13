@@ -18,7 +18,7 @@ module.exports = {
     // .skip((page-1)*50)
     // .limit(50);
     if (hide) {
-      const ids = films.map(mongoose.Types.ObjectId);
+      const ids = films.map(f => f._id);
       const result = await Film.update(
         { _id: { $in: ids } },
         { $set: { seen: true } },
