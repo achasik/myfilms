@@ -5,6 +5,7 @@ module.exports = {
   home: async (req, res) => {
     // const page = req.query.page || 1;
     //const page = parseInt(pageStr);
+    const hide = req.query.hide;
     const films = await Film.find(
       {
         seen: { $ne: true },
@@ -15,6 +16,14 @@ module.exports = {
     ).sort({ year: -1, updatedAt: -1 });
     // .skip((page-1)*50)
     // .limit(50);
+    if (hide) {
+      const ids = films.map(mongoose.Types.ObjectId);
+      const result = await Film.update(
+        { _id: { $in: ids } },
+        { $set: { seen: true } },
+        { multi: true }
+      );
+    }
     res.render("home", { title: "Films found " + films.length, films: films });
   },
   film: async (req, res) => {
