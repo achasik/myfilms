@@ -3,10 +3,11 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-   process.env.MONGODB_URI,
+   MONGODB_URI,
    { useMongoClient: true }
 );
 app.set('view engine', 'pug');
@@ -28,7 +29,12 @@ app.use(bodyParser.json());
 
 const home = require('./routes/home');
 const films = require('./routes/films');
+const detail = require('./routes/detail');
+const upload = require('./routes/upload');
+
 app.use('/', home);
 app.use('/films', films);
+app.use('/detail', detail);
+app.use('/upload', upload);
 
 app.listen(PORT, () => console.log('Node app is running on port', PORT));

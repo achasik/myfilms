@@ -6,8 +6,12 @@ html
         each film in films
           li
             div(style= {width:'520px', padding:'20px'})
-              div
-                strong=film.name + ' / '+ film.nameRu +' '+ film.year
-              img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
+              div                
+                a(href='/detail/'+film.id+'?key='+process.env.KEY)
+                  h2=film.name + ' / '+ film.nameRu +' '+ film.year
+                  if film.poster
+                    img(src='https://image.tmdb.org/t/p/w342'+film.poster)
+                  else if film.kp
+                    img(src='http://st.kp.yandex.net/images/film_iphone/iphone360_'+film.kp+'.jpg')                                
               div=film.description
 
