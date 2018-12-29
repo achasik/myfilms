@@ -9,8 +9,8 @@ module.exports = {
     const films = await Film.find(
       {
         seen: { $ne: true },
-        torrents: { $gt: [] },
-        updatedAt: { $gt: new Date(new Date() - 240 * 60 * 60 * 1000) }
+        torrents: { $gt: [] } //,
+        // updatedAt: { $gt: new Date(new Date() - 240 * 60 * 60 * 1000) }
       },
       { __v: 0 }
     )
