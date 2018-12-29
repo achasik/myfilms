@@ -22,7 +22,10 @@ module.exports = {
   film: async (req, res) => {
     //const t = new Torrent();
     const id = req.params.id;
-    const film = await Film.findById(id).populate("torrents");
+    const film = await Film.findById(id).populate({
+      path: "torrents",
+      options: { sort: { createdAt: 1 } }
+    });
     res.status(200).json(film);
   },
   post: async (req, res) => {
