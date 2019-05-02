@@ -10,7 +10,8 @@ html
       each video in film.videos
         li
           a(href='http://youtube.com/watch?v='+video.id)=video.name
-    ul
-    each torrent in film.torrents
-      li
-        a(href=torrent.magnet)=torrent.title
+    div='Torrents'
+      ul
+        each torrent in film.torrents
+          li
+            a(href=torrent.magnet)=torrent.title
