@@ -7,6 +7,7 @@ module.exports = {
     // const page = req.query.page || 1;
     //const page = parseInt(pageStr);
     const hide = req.query.hide;
+    const search = req.query.search;
     const films = await Film.find(
       {
         seen: { $ne: true },
@@ -25,7 +26,11 @@ module.exports = {
         { multi: true }
       );
     }
-    res.render("home", { title: "Films found " + films.length, films: films });
+    res.render("home", {
+      title: "Films found " + films.length,
+      films: films,
+      search: search
+    });
   }
   // film: async (req, res) => {
   //   //const t = new Torrent();
