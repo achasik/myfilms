@@ -3,6 +3,7 @@ html
     form(action='/', method='GET')
       p
         input(type='text', name='search', value=search)
+        input(type='hidden', name='key', value=process.env.KEY)
       input(type='submit', value='Search')
     h1= title
     div
