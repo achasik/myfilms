@@ -5,11 +5,12 @@ html
         strong=film.name + ' / '+ film.nameRu +' '+ film.year
         img(src='https://image.tmdb.org/t/p/w342'+film.poster)            
       div=film.description
-    div='Trailers'
-      ul
-      each video in film.videos
-        li
-          a(href='http://youtube.com/watch?v='+video.id)=video.name
+    if film.videos
+      div='Trailers'
+        ul
+          each video in film.videos
+            li
+              a(href='http://youtube.com/watch?v='+video.id)=video.name
     div='Torrents'
       ul
         each torrent in film.torrents
