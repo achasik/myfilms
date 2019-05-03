@@ -11,7 +11,12 @@ module.exports = {
     let films;
     if (search) {
       films = await Film.find(
-        { name: { $regex: search, $options: "i" } },
+        {
+          $or: [
+            { name: { $regex: search, $options: "i" } },
+            { nameRu: { $regex: search, $options: "i" } }
+          ]
+        },
         { __v: 0 }
       ).sort({ year: -1, updatedAt: -1 });
     } else {
