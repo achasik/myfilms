@@ -8,14 +8,23 @@ module.exports = {
     //const page = parseInt(pageStr);
     const hide = req.query.hide;
     const search = req.query.search;
-    const films = await Film.find(
-      {
-        seen: { $ne: true },
-        torrents: { $gt: [] },
-        updatedAt: { $gt: new Date(new Date() - 240 * 60 * 60 * 1000) }
-      },
-      { __v: 0 }
-    ).sort({ year: -1, updatedAt: -1 });
+    let films;
+    if (search) {
+      films = await Film.find(
+        { name: { $regex: search, $options: "i" } },
+        { __v: 0 }
+      ).sort({ year: -1, updatedAt: -1 });
+    } else {
+      films = await Film.find(
+        {
+          seen: { $ne: true },
+          torrents: { $gt: [] },
+          updatedAt: { $gt: new Date(new Date() - 240 * 60 * 60 * 1000) }
+        },
+        { __v: 0 }
+      ).sort({ year: -1, updatedAt: -1 });
+    }
+
     // .skip((page-1)*50)
     // .limit(50);
     if (hide) {
