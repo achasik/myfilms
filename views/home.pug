@@ -13,7 +13,7 @@ html
             div(style= {width:'520px', padding:'20px'})
               div                
                 a(href='/detail/'+film.id+'?key='+process.env.KEY)
-                  h2=film.name + ' / '+ film.nameRu +' '+ film.year+(film.videos ? ' *':'')
+                  h2=film.name + ' / '+ film.nameRu +' '+ film.year+(film.videos && film.videos.length ? ' *':'')
                   if film.poster
                     img(src='https://image.tmdb.org/t/p/w342'+film.poster)
                   else if film.kp
